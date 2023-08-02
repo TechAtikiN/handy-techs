@@ -1,11 +1,13 @@
 'use client'
 // name imports
-import { motion as m, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { motion as m, AnimatePresence } from 'framer-motion'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 // default imports
 import Image from 'next/image'
-export const testimonials = [
+
+// carousel data
+export const data = [
   {
     id: 0,
     name: 'Jianna Zhang',
@@ -34,7 +36,7 @@ export const testimonials = [
 
 export default function Home() {
   const [count, setCount] = useState(0)
-  let [tuple, setTuple] = useState([null, count])
+  let [tuple, setTuple] = useState([null, count]) // tuple to store previous count
 
   if (tuple[1] !== count) {
     setTuple([tuple[1], count])
@@ -42,29 +44,28 @@ export default function Home() {
 
   let prev = tuple[0]!
 
-  let direction = count > prev ? 1 : -1
+  let direction = count > prev ? 1 : -1 // direction of animation
 
   const handleNext = () => {
-    let nextSlide = count === testimonials.length - 1 ? 0 : count + 1
+    let nextSlide = count === data.length - 1 ? 0 : count + 1 // if count is at the end of the array, go back to the start
     setCount(nextSlide)
   }
 
   const handlePrev = () => {
-    let prevSlide = count === 0 ? testimonials.length - 1 : count - 1
+    let prevSlide = count === 0 ? data.length - 1 : count - 1 // if count is at the start of the array, go back to the end
     setCount(prevSlide)
   }
 
   return (
-    <div className='min-h-screen bg-slate-950 py-20 relative'>
-      {/* 
-      <main className='bg-slate-900 min-h-screen text-white px-10'>
-        <h1 className='text-4xl text-center font-bold py-5'>Custom Carousel</h1> */}
+    <div className='min-h-screen text-white bg-slate-950 py-6 relative'>
+      <h1 className='text-2xl text-center font-semibold py-10'>Custom Carousel built in Next.js & Framer motion</h1>
+
       <AnimatePresence custom={direction}>
-        {testimonials.map((testimonial, index) => (
+        {data.map((testimonial, index) => (
           <div
             key={index}>
             <m.div
-              className={`flex justify-center space-x-20 text-white ${index === count ? '' : 'hidden'}`}
+              className={`flex justify-center space-x-20 ${index === count ? '' : 'hidden'}`}
               key={count}
               variants={variants}
               initial='enter'
@@ -93,14 +94,17 @@ export default function Home() {
           </div>
         ))}
       </AnimatePresence>
+
+      {/* buttons */}
       <div className='space-x-3 absolute right-[558px] -mt-10'>
-        <button onClick={handlePrev} className='bg-white rounded-full'><ChevronLeftIcon className='h-12 w-12 p-3' /></button>
-        <button onClick={handleNext} className='bg-white rounded-full'><ChevronRightIcon className='h-12 w-12 p-3' /></button>
+        <button onClick={handlePrev} className='bg-white text-black rounded-full'><ChevronLeftIcon className='h-12 w-12 p-3' /></button>
+        <button onClick={handleNext} className='bg-white text-black rounded-full'><ChevronRightIcon className='h-12 w-12 p-3' /></button>
       </div>
     </div>
   )
 }
 
+// framer motion variants
 let variants = {
   enter: (direction: number) => ({ x: direction * 100, opacity: 0.1 }),
   center: { x: 0, opacity: 1 },

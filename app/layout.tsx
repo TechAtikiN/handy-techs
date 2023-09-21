@@ -5,6 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Handy Techs',
   description: 'Handy Techs is a initiative to provide handy and useful techs. Explore more in the branches',
+  manifest: '/manifest.webmanifest',
 }
 
 export default function RootLayout({

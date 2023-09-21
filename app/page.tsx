@@ -5,8 +5,7 @@ export default function Home() {
       <p
         className='text-lg'
       >
-        <strong>Handy Techs</strong> is a initiative to provide handy and useful techs. Explore more in the branches. Few of the techs that have been implemented are as follows:<br></br>
-        (Refer README.md of specific branch for more details)
+        Sentry-next
       </p>
     </main>
   )

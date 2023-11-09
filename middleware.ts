@@ -1,9 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { get } from '@vercel/edge-config';
  
 export const config = { matcher: '/' };
- 
-export async function middleware() {
-  const details = await get('details');
-  return NextResponse.json(details);
+
+export function middleware(req: NextRequest) {
 }
+
+// export async function middleware(req: NextRequest) {
+//   const response = await get('details');
+
+//   return NextResponse.json(response)
+// }

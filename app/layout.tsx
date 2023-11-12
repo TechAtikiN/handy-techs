@@ -1,6 +1,9 @@
+import './globals.css'
 // type imports
 import type { Metadata } from 'next'
-import './globals.css'
+
+// default imports
+import ProgressProvider from '@/components/providers/ProgressProvider'
 
 export const metadata: Metadata = {
   title: 'Handy Techs',
@@ -14,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body>
+        <ProgressProvider>
+          {children}
+        </ProgressProvider>
+      </body>
     </html>
   )
 }

@@ -13,3 +13,4 @@ Welcome to the Handy Techs repository! This repository is designed to provide yo
 -   [x] Next.js
 -   [x] Sentry
 -   [x] Next-PWA
+-   [x] Vercel Edge Config and Cron Jobs
